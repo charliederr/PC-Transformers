@@ -28,9 +28,14 @@ Create and activate a virtual environment (optional but recommended):
 python3 -m venv venv
 source venv/bin/activate 
 ```
-Install required Python packages:
+Install required Python packages
+if environment gives access to Nvidia GPU(s):
 ```
 pip install -r requirements.txt
+```
+if no GPU present:
+```
+pip install -r requirements-noGPU.txt
 ```
 ## Usage:
 Tokenize the data:
