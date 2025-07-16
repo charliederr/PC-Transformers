@@ -49,6 +49,7 @@ def train(model, dataloader, tokenizer, global_step, device):
 
         logits = model(target_ids, input_ids)
         #information
+        print("-----global step:"+global_step)
         print(logits)
 
         ce_loss = F.cross_entropy(
