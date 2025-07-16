@@ -48,6 +48,8 @@ def train(model, dataloader, tokenizer, global_step, device):
             target_ids = torch.clamp(target_ids, max=vocab_size-1)
 
         logits = model(target_ids, input_ids)
+        #information
+        print(logits)
 
         ce_loss = F.cross_entropy(
             logits.view(-1, logits.size(-1)),
@@ -104,7 +106,7 @@ def main():
         is_holding_error = True,
         num_heads=16,
         n_blocks=4,
-        num_epochs= 30,
+        num_epochs= 1,
         update_bias=False,
         use_lateral = True,
         energy_fn_name="mse",
