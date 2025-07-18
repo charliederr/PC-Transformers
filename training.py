@@ -51,7 +51,7 @@ def train(model, dataloader, tokenizer, global_step, device):
         #information
         print("-----global step:"+str(global_step)+"\n")
         print("logits size:"+str(logits.size(-1))+"\n")
-        print(logits)
+        #print(logits)
 
         ce_loss = F.cross_entropy(
             logits.view(-1, logits.size(-1)),
