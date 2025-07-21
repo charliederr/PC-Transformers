@@ -65,7 +65,12 @@ def train(model, dataloader, tokenizer, global_step, device):
             logits.view(-1, logits.size(-1)),
             target_ids.view(-1),
             ignore_index=pad_token_id)
-        total_ce_loss += ce_loss.item()
+        l2_lambda = 1e-4  # You can tune this value
+        l2_norm = sum(param.pow(2.0).sum() for param in model.parameters() if param.requires_grad)
+        l2_loss = l2_lambda * l2_norm
+
+        loss = ce_loss + l2_loss
+        total_ce_loss += loss.item()
 
         layer_energies = []
         for module in model.modules():
