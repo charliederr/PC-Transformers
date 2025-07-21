@@ -50,22 +50,23 @@ def train(model, dataloader, tokenizer, global_step, device):
         logits = model(target_ids, input_ids)
         #information
 
-        #print("-----global step:"+str(global_step)+"\n")
+        print("-----global step:"+str(global_step)+"\n")
         #print("logits size:"+str(logits.size(-1))+"\n")
         #print(logits)
 
-        
+        '''
         debug_cadence=300
         if global_step % debug_cadence == 0:
             print("-----global step:"+str(global_step)+"\n")
             print("logits size:"+str(logits.size(-1))+"\n")
             print(logits)
+            '''
 
         ce_loss = F.cross_entropy(
             logits.view(-1, logits.size(-1)),
             target_ids.view(-1),
             ignore_index=pad_token_id)
-        l2_lambda = 1e-4  # You can tune this value
+        l2_lambda = 1e-3  # You can tune this value
         l2_norm = sum(param.pow(2.0).sum() for param in model.parameters() if param.requires_grad)
         l2_loss = l2_lambda * l2_norm
 
