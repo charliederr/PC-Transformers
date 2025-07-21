@@ -50,7 +50,7 @@ def train(model, dataloader, tokenizer, global_step, device):
         logits = model(target_ids, input_ids)
         #information
 
-        print("-----global step:"+str(global_step)+"\n")
+        #print("-----global step:"+str(global_step)+"\n")
         #print("logits size:"+str(logits.size(-1))+"\n")
         #print(logits)
 
@@ -122,7 +122,7 @@ def main():
         is_holding_error = True,
         num_heads=16,
         n_blocks=4,
-        num_epochs= 1,
+        num_epochs= 30,
         update_bias=False,
         use_lateral = True,
         energy_fn_name="mse",
